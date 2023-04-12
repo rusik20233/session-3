@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KeeperBaseEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Division" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Employee code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="users group visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="E-mail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Date_of_birth" Type="date" Nullable="false" />
+          <Property Name="Password_details" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Group" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users personal visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="E-mail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Date_of_birth" Type="date" Nullable="false" />
+          <Property Name="Password_details" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_users group visit_staff">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="users group visit" Type="Self.users group visit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users group visit">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users personal visit_staff">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="users personal visit" Type="Self.users personal visit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users personal visit">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeeperBaseEntitiesStoreContainer">
+          <EntitySet Name="staff" EntityType="Self.staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users group visit" EntityType="Self.users group visit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users personal visit" EntityType="Self.users personal visit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_users group visit_staff" Association="Self.FK_users group visit_staff">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="users group visit" EntitySet="users group visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users personal visit_staff" Association="Self.FK_users personal visit_staff">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="users personal visit" EntitySet="users personal visit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeeperBaseEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Division" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Employee_code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="users_group_visit" Relationship="Self.FK_users_group_visit_staff" FromRole="staff" ToRole="users_group_visit" />
+          <NavigationProperty Name="users_personal_visit" Relationship="Self.FK_users_personal_visit_staff" FromRole="staff" ToRole="users_personal_visit" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="users_group_visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Password_details" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Group" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Purpose" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_users_group_visit_staff" FromRole="users_group_visit" ToRole="staff" />
+        </EntityType>
+        <EntityType Name="users_personal_visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Password_details" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Purpose" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_users_personal_visit_staff" FromRole="users_personal_visit" ToRole="staff" />
+        </EntityType>
+        <Association Name="FK_users_group_visit_staff">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="users_group_visit" Type="Self.users_group_visit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users_group_visit">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_personal_visit_staff">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="users_personal_visit" Type="Self.users_personal_visit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users_personal_visit">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeeperEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="staffs" EntityType="Self.staff" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="users_group_visits" EntityType="Self.users_group_visit" />
+          <EntitySet Name="users_personal_visits" EntityType="Self.users_personal_visit" />
+          <AssociationSet Name="FK_users_group_visit_staff" Association="Self.FK_users_group_visit_staff">
+            <End Role="staff" EntitySet="staffs" />
+            <End Role="users_group_visit" EntitySet="users_group_visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_personal_visit_staff" Association="Self.FK_users_personal_visit_staff">
+            <End Role="staff" EntitySet="staffs" />
+            <End Role="users_personal_visit" EntitySet="users_personal_visits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KeeperBaseEntitiesStoreContainer" CdmEntityContainer="KeeperEntities">
+          <EntitySetMapping Name="staffs">
+            <EntityTypeMapping TypeName="KeeperBaseEntities.staff">
+              <MappingFragment StoreEntitySet="staff">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Employee_code" ColumnName="Employee code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KeeperBaseEntities.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_group_visits">
+            <EntityTypeMapping TypeName="KeeperBaseEntities.users_group_visit">
+              <MappingFragment StoreEntitySet="users group visit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Date_of_birth" ColumnName="Date_of_birth" />
+                <ScalarProperty Name="Password_details" ColumnName="Password_details" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_personal_visits">
+            <EntityTypeMapping TypeName="KeeperBaseEntities.users_personal_visit">
+              <MappingFragment StoreEntitySet="users personal visit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Date_of_birth" ColumnName="Date_of_birth" />
+                <ScalarProperty Name="Password_details" ColumnName="Password_details" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
